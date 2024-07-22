@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cors-deployment
+  namespace: todo
+  labels:
+    app: cors
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cors
+  template:
+    metadata:
+      labels:
+        app: cors
+    spec:
+      containers:
+      - name: cors
+        image: shubhamshinde2206/cors:tag
+        ports:
+        - containerPort: 9000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cors-service
+spec:
+  selector:
+    app: cors
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
