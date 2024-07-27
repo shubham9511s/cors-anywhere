@@ -28,6 +28,7 @@ kind: Service
 metadata:
   name: cors-service
 spec:
+  type: ClusterIP
   selector:
     app: cors
   ports:
